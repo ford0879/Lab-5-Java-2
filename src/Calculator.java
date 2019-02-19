@@ -124,7 +124,7 @@ public class Calculator
             	
             	// 1 token
             case 1:
-            	if(tokens[0].equalsIgnoreCase( "quit"))
+            	if(tokens[0].equalsIgnoreCase("quit"))
             		{
             		    return Integer.MIN_VALUE;
             		}
@@ -184,7 +184,7 @@ public class Calculator
         // method will catch those exceptions and respond accordingly.
     	
     	// Checks if user wants to end program
-    	if(input != "quit")
+    	if(!(input.equals("quit")))
     	{
     	// Separates input into tokens for calculations
     	 String[] parsedInput = input.split(" ");
@@ -210,7 +210,10 @@ public class Calculator
     	 	return "Calculator Exception, message is: " + c;
     	 }
     	}
+    	
     	else
+    	{
     	 return "quit";
+    	}
     }
 }

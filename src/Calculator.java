@@ -117,6 +117,32 @@ public class Calculator
         switch(tokens.length)
         {
             // TODO: complete this...
+               // 0 tokens
+            case 0: 
+            	throw new CalculatorException ("Illegal Token Length");
+            	
+            	// 1 token
+            case 1:
+            	if(tokens[0].equals( "quit"))
+            		{
+            		    return Integer.MIN_VALUE;
+            		}
+            	else
+            	    {
+            		    throw new CalculatorException("Illegal Command");
+            	    }
+            	
+            	// 2 tokens
+            case 2:
+            	return calculateTwoTokens(tokens);
+            	
+            	// 3 tokens
+            case 3:
+            	return calculateThreeTokens(tokens);
+            	
+            	// 4 or more tokens
+            default: 
+            	throw new CalculatorException ("Illegal Token Length");
         }
 
     }
@@ -151,7 +177,7 @@ public class Calculator
      * CalculatorException - a CalculatorException has been caught.
      */
     public static String parseAndExecute(String input)
-    {//Breaks up entire input and gives to execute
+    {   //Breaks up entire input and gives to execute
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.

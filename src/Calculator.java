@@ -34,20 +34,41 @@ public class Calculator
      */
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
-    	int a = Integer.parseInt(tokens[1]);
+    	
         // Throws NumberFormatException if the second token is not an int value.
         // TODO: complete this...
-    	if(tokens[0].equalsIgnoreCase("negate"))
+    	try
     	{
-    		a = Math.negateExact(a);
+    		int a = Integer.parseInt(tokens[1]);
+    		// Flips sign of number
+    		if(tokens[0].equalsIgnoreCase("negate"))
+    		{
+    			a = Math.negateExact(a);
+    		}
+    	
+    		// Divides number only by half
+    		else if(tokens[0].equalsIgnoreCase("halve"))
+    		{
+    			a = (int) Math.floor(0.5 * a);
+    		}
+    		
+    		// Causes Calculator Exception catch to occur
+    		else
+    		{
+    			throw new CalculatorException("Invalid Command");
+    		}
+    		return a;
     	}
     	
-    	else if(tokens[0].equalsIgnoreCase("halve"))
+    	catch(NumberFormatException n)
     	{
-    		a = (int) Math.floor(0.5 * a);
+    		throw new NumberFormatException("Can not convert string to int");
     	}
-        
-        return a;
+    	
+    	catch(CalculatorException c)
+    	{
+    		throw new CalculatorException("Invalid Command");
+    	}
     }
 
     /**
@@ -82,6 +103,54 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	try
+    	{
+    		// Parses numbers to be used
+    		int a = Integer.parseInt(tokens[0]);
+    		int b = Integer.parseInt(tokens[2]);
+    		
+    		String command = tokens[1];
+    		
+    		int result;
+    		
+    		if(command.equals("+"))
+    		{
+    			result = a + b;
+    		}
+    		
+    		else if(command.equals("-"))
+    		{
+    			result = a - b;
+    		}
+    		
+    		else if(command.equals("/"))
+    		{
+    			result = a/b;
+    		}
+    		
+    		// Causes Calculator Exception catch to occur
+    		else
+    		{
+    			throw new CalculatorException("Invalid Command");
+    		}
+    		return result;
+    	}
+    	
+    	catch(NumberFormatException n)
+    	{
+    		throw new NumberFormatException("Can not convert string to int");
+    	}
+    	
+    	catch(CalculatorException c)
+    	{
+    		throw new CalculatorException("Invalid Command");
+    	}
+    	
+    	catch(ArithmeticException a)
+    	{
+    		throw new ArithmeticException("A division by zero has occured");
+    	}
+    	
     }
 
     /**

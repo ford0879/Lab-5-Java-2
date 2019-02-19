@@ -37,14 +37,15 @@ public class Calculator
     	int a = Integer.parseInt(tokens[1]);
         // Throws NumberFormatException if the second token is not an int value.
         // TODO: complete this...
-        try
-        {
-        	int b = Integer.parseInt(tokens[2]); 
-        }
-        catch(NumberFormatException n)
-        {
-        	System.out.println("");
-        }
+    	if(tokens[0].equalsIgnoreCase("negate"))
+    	{
+    		
+    	}
+    	
+    	if(tokens[0].equalsIgnoreCase("halve"))
+    	{
+    		
+    	}
         
         return a;
     }
@@ -123,7 +124,7 @@ public class Calculator
             	
             	// 1 token
             case 1:
-            	if(tokens[0].equals( "quit"))
+            	if(tokens[0].equalsIgnoreCase( "quit"))
             		{
             		    return Integer.MIN_VALUE;
             		}
@@ -192,24 +193,24 @@ public class Calculator
     	 {
     		// Attempts to perform operations
     		int result = execute(parsedInput);
-    		return String.format("The result is: %d", result);
+    		return "The result is: " + result;
     	 }
     	 
     	 catch(ArithmeticException a)
     	 {
-    		System.out.println("Attempted to divide by 0. Please try again.");
+    		return "Attempted to divide by 0. Please try again.";
     	 }
     	 catch(NumberFormatException n)
     	 {
-    	 	System.out.println("Input number cannot be parsed to an int. Please try again.");
+    	 	return "Input number cannot be parsed to an int. Please try again.";
     	 }
     	
     	 catch(CalculatorException c)
     	 {
-    	 	String.format("Calculator Exception, message is: %s", c);
+    	 	return "Calculator Exception, message is: " + c;
     	 }
     	}
-    	
-    	return input;
+    	else
+    	 return input;
     }
 }

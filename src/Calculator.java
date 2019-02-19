@@ -39,12 +39,12 @@ public class Calculator
         // TODO: complete this...
     	if(tokens[0].equalsIgnoreCase("negate"))
     	{
-    		
+    		a = Math.negateExact(a);
     	}
     	
-    	if(tokens[0].equalsIgnoreCase("halve"))
+    	else if(tokens[0].equalsIgnoreCase("halve"))
     	{
-    		
+    		a = (int) Math.floor(0.5 * a);
     	}
         
         return a;
@@ -211,6 +211,6 @@ public class Calculator
     	 }
     	}
     	else
-    	 return input;
+    	 return "quit";
     }
 }

@@ -272,7 +272,7 @@ public class Calculator
     	}
     	catch(CalculatorException c)
     	{
-    		return "Calculator Exception, message is: Illegal Command";
+    		return String.format("Calculator Exception, message is: %s", c.getMessage());
     	}
     	
     	return input;

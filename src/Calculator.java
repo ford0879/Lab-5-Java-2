@@ -55,7 +55,7 @@ public class Calculator
     		// Causes Calculator Exception catch to occur
     		else
     		{
-    			throw new CalculatorException("Invalid Command");
+    			throw new CalculatorException("Illegal Command");
     		}
     		return a;
     	}
@@ -67,7 +67,7 @@ public class Calculator
     	
     	catch(CalculatorException c)
     	{
-    		throw new CalculatorException("Invalid Command");
+    		throw new CalculatorException("Illegal Command");
     	}
     }
 
@@ -131,7 +131,7 @@ public class Calculator
     		// Causes Calculator Exception catch to occur
     		else
     		{
-    			throw new CalculatorException("Invalid Command");
+    			throw new CalculatorException("Illegal Command");
     		}
     		return result;
     	}
@@ -143,7 +143,7 @@ public class Calculator
     	
     	catch(CalculatorException c)
     	{
-    		throw new CalculatorException("Invalid Command");
+    		throw new CalculatorException("Illegal Command");
     	}
     	
     	catch(ArithmeticException a)
@@ -252,37 +252,29 @@ public class Calculator
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
     	
-    	// Checks if user wants to end program
-    	if(!(input.equals("quit")))
+    	String[] parsedInput = input.split(" ");
+    	int results;
+    	try 
     	{
-    	// Separates input into tokens for calculations
-    	 String[] parsedInput = input.split(" ");
-
-    	 try
-    	 {
-    		// Attempts to perform operations
-    		int result = execute(parsedInput);
-    		return "The result is: " + result;
-    	 }
-    	 
-    	 catch(ArithmeticException a)
-    	 {
+			results = execute(parsedInput);
+			if(results == Integer.MIN_VALUE)
+				input = "quit";
+			else
+			input = String.format("The result is: %d", results);
+		}
+    	catch(ArithmeticException a)
+    	{
     		return "Attempted to divide by 0. Please try again.";
-    	 }
-    	 catch(NumberFormatException n)
-    	 {
-    	 	return "Input number cannot be parsed to an int. Please try again.";
-    	 }
-    	
-    	 catch(CalculatorException c)
-    	 {
-    	 	return "Calculator Exception, message is: " + c;
-    	 }
-    	}
-    	
-    	else
+		}
+    	catch(NumberFormatException e)
     	{
-    	 return "quit";
+    		return "Input number cannot be parsed to an int. Please try again.";
     	}
+    	catch(CalculatorException c)
+    	{
+    		return "Calculator Exception, message is: Illegal Command";
+    	}
+    	
+    	return input;
     }
 }

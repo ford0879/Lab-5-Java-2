@@ -365,6 +365,6 @@ public class CalculatorTest {
     {
         // TODO: complete this test...
     	String result = Calculator.parseAndExecute("1 + 6 2");
-        Assert.assertEquals("Calculator Exception, message is: Illegal Command", result);
+        Assert.assertEquals("Calculator Exception, message is: Illegal Token Length", result);
     }
 }
